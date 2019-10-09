@@ -1,0 +1,7 @@
+location ~* "^/[0-9]{3}.html$" {
+  root /etc/nginx/error-pages;
+  sub_filter_once off;{% for name, place_holder in edgeDebug %}
+  sub_filter '%{{ '{' }}{{ name }}{{ '}' }}' ${{ name }};{% endfor %}
+  allow all;
+  internal;
+}

@@ -1,0 +1,14 @@
+{
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "plugins": ["sonarjs"],
+  "extends": ["plugin:sonarjs/recommended", "airbnb-base"],
+  "rules": {
+    "arrow-parens": "off",
+    "no-underscore-dangle": "off",
+    "sonarjs/prefer-immediate-return": "off"
+  }
+}

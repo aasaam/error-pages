@@ -1,0 +1,82 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='Content-Security-Policy', content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:")
+    title=title
+    meta(name='referrer', content='no-referrer')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    link(rel='shortcut icon', type='image/png', href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=')
+    style!=style
+  body
+    header.head
+      .emoji=errorDetail.emoji
+      .info
+        h6(title=errorDetail.category.description)=errorDetail.category.message
+        h1 #{code}
+        h3=errorDetail.message
+    p=errorDetail.description
+    main
+      table
+        tbody
+          tr
+            th(scope='col' colspan="2") Technical Information
+          tr
+            td Request ID
+            td
+              strong=debug.request_id
+          tr
+            td Client ID
+            td
+              strong=debug.client_uid
+          tr
+            td User ID
+            td
+              strong=debug.user_id
+          tr
+            th(scope='col' colspan="2") User agent
+          tr
+            td Category
+            td=debug.agent_category
+          tr
+            td Browser
+            td
+              | #{debug.agent_name} #{debug.agent_version}
+          tr
+            td OS
+            td
+              | #{debug.agent_os} #{debug.agent_os_version}
+          tr
+            td Vendor
+            td=debug.agent_vendor
+          tr
+            td Hash
+            td
+              | #{debug.agent_hash}
+          tr
+            th(scope='col' colspan="2") Geography
+          tr
+            td Continent
+            td
+              | #{debug.geo_continent_name} (#{debug.geo_continent_code})
+          tr
+            td Country
+            td
+              | #{debug.geo_country_name} (#{debug.geo_country_code})
+          tr
+            td Location
+            td
+              a(href="https://www.openstreetmap.org/?mlat=" + debug.geo_latitude + "&mlon=" + debug.geo_longitude + "#map=8/" + debug.geo_latitude + "/" + debug.geo_latitude, title="Open on OpenStreetMap" target="_blank") 🗺️
+              | &nbsp;#{debug.geo_latitude},#{debug.geo_latitude} #{debug.geo_city}
+          tr
+            td ISP
+            td
+              | #{debug.geo_isp}
+          tr
+            td Timezone
+            td
+              | #{debug.geo_timezone}
+
+    footer Powered by
+      | &nbsp;
+      a(href=organization.url title=organization.description target="_blank")=organization.name
