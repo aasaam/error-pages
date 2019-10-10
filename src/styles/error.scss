@@ -16,6 +16,10 @@ header {
   }
   h1, h3, h6 {
     margin: 8px;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 2em;
   }
   h1 {
     font-size: 4em;
@@ -30,6 +34,10 @@ header {
       display: block;
     }
   }
+}
+
+p {
+  margin: 1em 0;
 }
 
 main {

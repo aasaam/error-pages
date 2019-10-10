@@ -23,10 +23,11 @@
     "eslint-plugin-import": "^2",
     "eslint-plugin-sonarjs": "^0",
     "lodash": "^4",
+    "minireset.css": "^0",
     "node-sass": "^4",
-    "normalize.css": "^8",
     "nunjucks": "^3",
     "pug": "^2",
+    "purgecss": "^1",
     "strip-css-comments": "^4"
   },
   "config": {

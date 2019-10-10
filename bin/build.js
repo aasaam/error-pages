@@ -8,6 +8,7 @@ const httpStatus = require('@aasaam/http-status-extra');
 const {
   Organization,
 } = require('@aasaam/information');
+const PurgeCss = require('purgecss');
 const _ = require('lodash');
 const nunjucks = require('nunjucks');
 const sass = require('node-sass');
@@ -23,7 +24,7 @@ const stripCssComments = require('strip-css-comments');
     `mkdir -p ${__dirname}/../dist/nginx/error-pages`,
     `mkdir -p ${__dirname}/../dist/nginx/snippets`,
     `rm -rf ${__dirname}/../tmp/_css_framework.scss`,
-    `cat ${__dirname}/../node_modules/normalize.css/normalize.css > ${__dirname}/../tmp/_css_framework.scss`,
+    `cat ${__dirname}/../node_modules/minireset.css/minireset.css > ${__dirname}/../tmp/_css_framework.scss`,
   ].join(' && '));
 
   fs.writeFileSync(`${__dirname}/../tmp/_css_framework.scss`, stripCssComments(fs.readFileSync(`${__dirname}/../tmp/_css_framework.scss`, { encoding: 'utf8' }), {
@@ -35,6 +36,10 @@ const stripCssComments = require('strip-css-comments');
     sourceMap: false,
     outputStyle: 'compressed',
   }).css.toString('utf-8').trim();
+
+  const resetCss = fs.readFileSync(`${__dirname}/../tmp/_css_framework.scss`, { encoding: 'utf8' });
+
+  style = `${resetCss}${'\n'}${style}`;
 
   const nano = await cssnano.process(style, {
     from: undefined,
@@ -99,6 +104,7 @@ const stripCssComments = require('strip-css-comments');
       agent_hash: '%{agent_hash}',
       geo_country_name: '%{geo_country_name}',
       geo_country_code: '%{geo_country_code}',
+      geo_country_flag: '%{geo_country_flag}',
       geo_city: '%{geo_city}',
       geo_continent_name: '%{geo_continent_name}',
       geo_continent_code: '%{geo_continent_code}',
@@ -107,6 +113,7 @@ const stripCssComments = require('strip-css-comments');
       geo_longitude: '%{geo_longitude}',
       geo_accuracy_radius: '%{geo_accuracy_radius}',
       geo_isp: '%{geo_isp}',
+      geo_isp_number: '%{geo_isp_number}',
     };
 
     const defaultTemplateData = {
@@ -118,8 +125,29 @@ const stripCssComments = require('strip-css-comments');
       code,
     };
 
-    const htmlContent = compliedPug(
+    let htmlContent = compliedPug(
       _.merge({}, _.clone(defaultTemplateData), { debug: edgeDebug }),
+    );
+
+    // @ts-ignore
+    const cssPure = new PurgeCss({
+      content: [
+        {
+          raw: htmlContent,
+          extension: 'html',
+        },
+      ],
+      css: [
+        {
+          raw: style,
+        },
+      ],
+    });
+
+    const purgeResult = cssPure.purge();
+
+    htmlContent = compliedPug(
+      _.merge({}, _.clone(defaultTemplateData), { debug: edgeDebug }, { style: purgeResult[0].css }),
     );
 
     fs.writeFileSync(`${__dirname}/../dist/nginx/error-pages/${code}.html`, htmlContent);

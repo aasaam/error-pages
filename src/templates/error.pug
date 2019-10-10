@@ -62,16 +62,17 @@ html(lang="en")
           tr
             td Country
             td
-              | #{debug.geo_country_name} (#{debug.geo_country_code})
+              | #{debug.geo_country_flag} #{debug.geo_country_name} (#{debug.geo_country_code})
           tr
             td Location
             td
               a(href="https://www.openstreetmap.org/?mlat=" + debug.geo_latitude + "&mlon=" + debug.geo_longitude + "#map=8/" + debug.geo_latitude + "/" + debug.geo_latitude, title="Open on OpenStreetMap" target="_blank") 🗺️
-              | &nbsp;#{debug.geo_latitude},#{debug.geo_latitude} #{debug.geo_city}
+              |  #{debug.geo_latitude},#{debug.geo_latitude} #{debug.geo_city}
           tr
             td ISP
             td
-              | #{debug.geo_isp}
+              a(href="https://bgp.he.net/AS" + debug.geo_isp_number, title="Open on Hurricane Electric" target="_blank") ℹ️
+              |  #{debug.geo_isp}
           tr
             td Timezone
             td
