@@ -93,6 +93,7 @@ const stripCssComments = require('strip-css-comments');
 
     const edgeDebug = {
       request_id: '%{request_id}',
+      request_ip: '%{request_ip}',
       client_uid: '%{client_uid}',
       user_id: '%{user_id}',
       agent_name: '%{agent_name}',
