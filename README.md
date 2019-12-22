@@ -39,6 +39,7 @@ Include [error-pages.conf](./dist/nginx/snippets/error-pages.conf) on **http** c
 | | ⛓ [428 Precondition Required](./dist/nginx/error-pages/428.html) | |
 | | 🌋 [429 Too Many Requests](./dist/nginx/error-pages/429.html) | |
 | | 🤮 [431 Request Header Fields Too Large](./dist/nginx/error-pages/431.html) | |
+| | 📛 [438 Intrusion Detected](./dist/nginx/error-pages/438.html) | |
 | | 🗑 [444 No Response](./dist/nginx/error-pages/444.html) | |
 | | 🔏️ [451 Unavailable For Legal Reasons](./dist/nginx/error-pages/451.html) | |
 | | 🐳 [494 Request header too large](./dist/nginx/error-pages/494.html) | |
