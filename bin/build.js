@@ -5,6 +5,7 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 
 const httpStatus = require('@aasaam/http-status-extra');
+
 const {
   Organization,
 } = require('@aasaam/information');
@@ -62,6 +63,10 @@ const stripCssComments = require('strip-css-comments');
       // @ts-ignore
       && [444, 494, 495, 496, 497].indexOf(c) !== -1
     ) {
+      errorCodes[c] = httpStatus[c];
+    }
+
+    if (c === 438) {
       errorCodes[c] = httpStatus[c];
     }
   });
@@ -148,7 +153,12 @@ const stripCssComments = require('strip-css-comments');
     const purgeResult = cssPure.purge();
 
     htmlContent = compliedPug(
-      _.merge({}, _.clone(defaultTemplateData), { debug: edgeDebug }, { style: purgeResult[0].css }),
+      _.merge(
+        {},
+        _.clone(defaultTemplateData),
+        { debug: edgeDebug },
+        { style: purgeResult[0].css },
+      ),
     );
 
     fs.writeFileSync(`${__dirname}/../dist/nginx/error-pages/${code}.html`, htmlContent);
