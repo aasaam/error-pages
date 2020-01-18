@@ -27,7 +27,7 @@
     "node-sass": "^4",
     "nunjucks": "^3",
     "pug": "^2",
-    "purgecss": "^1",
+    "purgecss": "^2.0.3",
     "strip-css-comments": "^4"
   },
   "config": {
