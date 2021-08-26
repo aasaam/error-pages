@@ -1,0 +1,179 @@
+body {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1em;
+  padding: 16px;
+  background-color: #f2f2f2;
+  color: #333;
+  @media only screen and (min-width: 960px) {
+    font-size: 1.3em;
+  }
+}
+
+h1,
+h2,
+h3,
+h6 {
+  margin: 0;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h1 {
+  font-size: 3em;
+}
+
+.org {
+  font-size: 0.9em;
+  padding: 16px 0;
+  text-align: center;
+  img {
+    display: inline-block;
+    margin-bottom: 8px;
+    height: 96px;
+    opacity: .75;
+  }
+}
+
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  .emoji {
+    display: none;
+  }
+
+  @media only screen and (min-width: 960px) {
+    text-align: left;
+    flex-direction: row;
+    min-width: 512px;
+
+    .info {
+      text-align: center;
+    }
+
+    .emoji {
+      font-size: 8em;
+      padding: 24px;
+      display: block;
+    }
+  }
+}
+
+p {
+  margin: 0.5em 0;
+}
+
+main {
+  overflow-x: scroll;
+}
+
+table {
+  background-color: #fff;
+  width: 100%;
+  padding: 4px;
+  th {
+    text-align: center;
+    padding: 8px;
+    background-color: #666;
+    color: #ccc;
+  }
+  tr:not([data-content=""]) {
+    display: table-row;
+  }
+  tr {
+    display: none;
+    td {
+      padding: 4px;
+      &:first-child {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    display: inline-block;
+    &::after {
+      display: inline-block;
+      content: '\00a0';
+    }
+    &.b {
+      display: block;
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+.browser {
+  background-color: #fff;
+  border: 1px solid #eee;
+  padding: 8px;
+  margin: 8px 0;
+  text-align: center;
+
+  p {
+    margin: 0 0 8px;
+    padding: 4px;
+  }
+
+  ul {
+    list-style: none;
+    li {
+      @media only screen and (min-width: 960px) {
+        display: inline-block;
+        width: 40%;
+        margin: 0;
+      }
+      display: block;
+      width: 100%;
+      margin-bottom: 8px;
+      a {
+        font-weight: bold;
+        svg {
+          height: 48px;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  text-align: center;
+
+  @media only screen and (min-width: 960px) {
+    text-align: right;
+  }
+  font-size: 0.7em;
+  padding: 16px 0 0;
+  color: #999;
+  a {
+    color: #999;
+  }
+  svg {
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    vertical-align: middle;
+    opacity: 0.5;
+  }
+}

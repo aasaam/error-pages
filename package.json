@@ -1,0 +1,49 @@
+{
+  "name": "@aasaam/error-pages",
+  "version": "0.0.0",
+  "description": "Modified error pages for web servers",
+  "keywords": [
+    "aasaam",
+    "error",
+    "http-status",
+    "nginx",
+    "http"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aasaam/error-pages.git"
+  },
+  "homepage": "https://aasaam.github.io/error-pages/",
+  "devDependencies": {
+    "@aasaam/brand-icons": "^0",
+    "@aasaam/http-status-extra": "^0",
+    "@aasaam/information": "^0",
+    "@aasaam/noto-font": "^0",
+    "cssnano": "^5",
+    "cssnano-preset-lite": "^2",
+    "eslint": "^7",
+    "eslint-config-airbnb-base": "^14",
+    "eslint-plugin-import": "^2",
+    "eslint-plugin-sonarjs": "^0",
+    "lodash": "^4",
+    "minireset.css": "^0",
+    "node-sass": "^6",
+    "nunjucks": "^3",
+    "opentype.js": "^1",
+    "postcss": "^8",
+    "pug": "^3",
+    "purgecss": "^4",
+    "strip-comments": "^2"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "build": "node ./bin/build.js"
+  },
+  "authors": [
+    {
+      "name": "Muhammad Hussein Fattahizadeh",
+      "email": "m@mhf.ir"
+    }
+  ],
+  "license": "MIT"
+}

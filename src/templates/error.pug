@@ -1,0 +1,154 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset='utf-8')
+    title #{title} | #{debug.organization_title}
+    meta(name='referrer', content='no-referrer')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+
+    link(rel='shortcut icon' href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAEUlEQVR42mNkIAAYRxWMJAUAE5gAEdz4t9QAAAAASUVORK5CYII=')
+    link(rel='icon' href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%3E%3Ctext%20x='0'%20y='16'%3E" + errorDetail.emoji +"%3C/text%3E%3C/svg%3E" type='image/svg+xml')
+
+    style!=style
+  body
+
+    .org
+        img(src=debug.organization_brand_icon alt=debug.organization_title)
+        br
+        strong=debug.organization_title
+
+    .head
+      .emoji=errorDetail.emoji
+      .info
+        h1 #{code}
+        h3=errorDetail.message
+
+    p=errorDetail.description
+
+    if code === 437
+
+      div.browser
+        script !{modernBrowserBack}
+        p Download recommended browsers:
+        ul
+          li
+
+            a(href="https://www.mozilla.org/en-US/firefox/" target="_blank")
+              | !{firefoxSvg}
+              br
+              | Mozilla Firefox
+          li
+            a(href="https://www.google.com/chrome/" target="_blank")
+              | !{chromeSvg}
+              br
+              | Google Chrome
+
+    main
+      table
+        tbody
+          tr
+            th(scope='col' colspan="2") Technical Information
+          tr(data-content=debug.time_iso8601)
+            td Time
+            td
+              strong=debug.time_iso8601
+          tr(data-content=debug.request_id)
+            td ID
+            td
+              strong=debug.request_id
+          tr(data-content=debug.host)
+            td Host
+            td
+              strong #{debug.host} #{debug.http_host}
+          tr(data-content=debug.scheme)
+            td Scheme
+            td
+              strong=debug.scheme
+          tr(data-content=debug.remote_addr)
+            td IP
+            td
+              strong=debug.remote_addr
+          tr(data-content=debug.request_method)
+            td Method
+            td
+              strong=debug.request_method
+          tr(data-content=debug.request_uri)
+            td URI
+            td
+              strong #{debug.request_uri}
+          tr(data-content=debug.request_length)
+            td Length
+            td
+              strong=debug.request_length
+          tr(data-content=debug.client_uid)
+            td Client ID
+            td
+              strong=debug.client_uid
+          tr(data-content=debug.user_id)
+            td User ID
+            td
+              strong=debug.user_id
+          tr(data-content=debug.waf_mode)
+            td WAF mode
+            td
+              strong=debug.waf_mode
+          tr(data-content=debug.protection_mode)
+            td Protection mode
+            td
+              strong=debug.protection_mode
+          tr
+            th(scope='col' colspan="2") User agent
+          tr(data-content=debug.http_user_agent)
+            td User agent
+            td=debug.http_user_agent
+          tr(data-content=debug.agent_category)
+            td Category
+            td=debug.agent_category
+          tr(data-content=debug.agent_name)
+            td Browser
+            td
+              | #{debug.agent_name} #{debug.agent_version}
+          tr(data-content=debug.agent_os)
+            td OS
+            td
+              | #{debug.agent_os} #{debug.agent_os_version}
+          tr(data-content=debug.agent_vendor)
+            td Vendor
+            td=debug.agent_vendor
+          tr(data-content=debug.user_agent_hash)
+            td Hash
+            td
+              | #{debug.user_agent_hash}
+          tr(data-content=debug.agent_is_modern)
+            td Modern?
+            td
+              | #{debug.agent_is_modern}
+          tr(data-content=debug.geo_continent_code)
+            th(scope='col' colspan="2") Geography
+          tr(data-content=debug.geo_continent_code)
+            td Continent
+            td
+              | #{debug.geo_continent_name} (#{debug.geo_continent_code})
+          tr(data-content=debug.geo_country_code)
+            td Country
+            td
+              | #{debug.geo_country_flag} #{debug.geo_country_name} (#{debug.geo_country_code})
+          tr(data-content=debug.geo_latitude)
+            td Location
+            td
+              a(href="https://www.openstreetmap.org/?mlat=" + debug.geo_latitude + "&mlon=" + debug.geo_longitude + "#map=8/" + debug.geo_latitude + "/" + debug.geo_longitude, title="Open on OpenStreetMap" target="_blank") 🗺️
+              |  #{debug.geo_latitude},#{debug.geo_longitude} #{debug.geo_city}
+          tr(data-content=debug.geo_isp_number)
+            td ISP
+            td
+              a(href="https://db-ip.com/as" + debug.geo_isp_number, title="Autonomous System Number info" target="_blank") ℹ️
+              |  #{debug.geo_isp}
+          tr(data-content=debug.geo_timezone)
+            td Timezone
+            td
+              | #{debug.geo_timezone}
+
+    footer
+      | Powered by#{' '}
+      a(href=organization.url target="_blank" rel="nofollow" title=organization.description)=organization.name
+      |!{logo}
