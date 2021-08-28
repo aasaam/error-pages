@@ -1,5 +1,5 @@
 doctype html
-html(lang="en")
+html(lang="en" dir="ltr")
   head
     meta(charset='utf-8')
     title #{title} | #{debug.organization_title}
@@ -10,6 +10,7 @@ html(lang="en")
     link(rel='icon' href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%3E%3Ctext%20x='0'%20y='16'%3E" + errorDetail.emoji +"%3C/text%3E%3C/svg%3E" type='image/svg+xml')
 
     style!=style
+    script !{supportScript}
   body
 
     .org
@@ -23,17 +24,17 @@ html(lang="en")
         h1 #{code}
         h3=errorDetail.message
 
-    p=errorDetail.description
+    p.desc=errorDetail.description
 
     if code === 437
 
-      div.browser
+      div.extra-info
         script !{modernBrowserBack}
         p Download recommended browsers:
         ul
           li
 
-            a(href="https://www.mozilla.org/en-US/firefox/" target="_blank")
+            a(href="https://www.mozilla.org/en-US/firefox/new/" target="_blank")
               | !{firefoxSvg}
               br
               | Mozilla Firefox
@@ -43,9 +44,34 @@ html(lang="en")
               br
               | Google Chrome
 
+    if code === 502 || code === 504
+
+      div.extra-info !{svg502504}
+
+    hr
+
     main
       table
         tbody
+          tr
+            th.support(scope='col' colspan="2") ℹ️ Need help?
+          tr
+            td(scope='col' colspan="2")
+              p
+                strong if you need help please contact us:
+          tr(data-content=debug.support_email)
+            td Email
+            td
+              a#support-mail(href="mailto:" + debug.support_email) 📧 #{debug.support_email}
+
+          tr(data-content=debug.support_tel)
+            td Telephone
+            td
+              a(href="tel:" + debug.support_tel) 📞 #{debug.support_tel}
+          tr(data-content=debug.support_url)
+            td Web address
+            td
+              a#support-url(href=debug.support_url) 📝 #{debug.support_url}
           tr
             th(scope='col' colspan="2") Technical Information
           tr(data-content=debug.time_iso8601)
@@ -151,4 +177,3 @@ html(lang="en")
     footer
       | Powered by#{' '}
       a(href=organization.url target="_blank" rel="nofollow" title=organization.description)=organization.name
-      |!{logo}

@@ -2,10 +2,10 @@ body {
   font-family: 'Courier New', Courier, monospace;
   font-size: 1em;
   padding: 16px;
-  background-color: #f2f2f2;
+  background-color: #f5f5f5;
   color: #333;
   @media only screen and (min-width: 960px) {
-    font-size: 1.3em;
+    font-size: 1.4em;
   }
 }
 
@@ -25,6 +25,13 @@ h2 {
 }
 h1 {
   font-size: 3em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 16px 0;
+  height: 0;
 }
 
 .org {
@@ -68,13 +75,14 @@ h1 {
   }
 }
 
-p {
-  margin: 0.5em 0;
+.desc {
+  text-align: center;
 }
 
 main {
   overflow-x: scroll;
 }
+
 
 table {
   background-color: #fff;
@@ -85,6 +93,10 @@ table {
     padding: 8px;
     background-color: #666;
     color: #ccc;
+    &.support {
+      background-color: #1b5e20;
+    color: #e8f5e9;
+    }
   }
   tr:not([data-content=""]) {
     display: table-row;
@@ -124,12 +136,17 @@ a {
   text-decoration: none;
 }
 
-.browser {
+.extra-info {
   background-color: #fff;
   border: 1px solid #eee;
-  padding: 8px;
-  margin: 8px 0;
+  padding: 16px;
+  margin: 24px 0;
   text-align: center;
+
+  svg {
+    max-width: 80%;
+    height: auto;
+  }
 
   p {
     margin: 0 0 8px;

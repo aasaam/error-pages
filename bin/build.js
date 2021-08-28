@@ -21,19 +21,20 @@ const cssnano = require('cssnano');
 const litePreset = require('cssnano-preset-lite');
 const postcss = require('postcss').default;
 const stripComments = require('strip-comments');
+const uglify = require('uglify-js');
 
-const logo = fs.readFileSync(
-  `${__dirname}/../node_modules/@aasaam/information/logo/aasaam-mono.svg`,
-  { encoding: 'utf-8' },
-);
 const firefoxSvg = fs.readFileSync(
   `${__dirname}/../node_modules/@aasaam/brand-icons/svg/si_firefoxbrowser.svg`,
   { encoding: 'utf-8' },
-);
+).trim();
 const chromeSvg = fs.readFileSync(
   `${__dirname}/../node_modules/@aasaam/brand-icons/svg/si_googlechrome.svg`,
   { encoding: 'utf-8' },
-);
+).trim();
+const svg502504 = fs.readFileSync(
+  `${__dirname}/502-504.svg`,
+  { encoding: 'utf-8' },
+).trim();
 
 const { log } = console;
 
@@ -60,6 +61,12 @@ const { log } = console;
         preserveNewlines: false,
       },
     ),
+  );
+
+  const supportScript = uglify.minify(
+    fs.readFileSync(`${__dirname}/support-url.js`, {
+      encoding: 'utf8',
+    }),
   );
 
   let style = sass
@@ -142,14 +149,22 @@ const { log } = console;
       http_host: '%{http_host}',
       time_iso8601: '%{time_iso8601}',
       scheme: '%{scheme}',
+
+      support_email: '%{support_email}',
+      support_tel: '%{support_tel}',
+      support_url: '%{support_url}',
+
       request_id: '%{request_id}',
       remote_addr: '%{remote_addr}',
       request_method: '%{request_method}',
       request_uri: '%{request_uri}',
       request_length: '%{request_length}',
+
       client_uid: '%{client_uid}',
       user_id: '%{user_id}',
+
       http_user_agent: '%{http_user_agent}',
+
       agent_name: '%{agent_name}',
       agent_version: '%{agent_version}',
       agent_os: '%{agent_os}',
@@ -158,6 +173,7 @@ const { log } = console;
       agent_vendor: '%{agent_vendor}',
       agent_is_modern: '%{agent_is_modern}',
       user_agent_hash: '%{user_agent_hash}',
+
       geo_country_name: '%{geo_country_name}',
       geo_country_code: '%{geo_country_code}',
       geo_country_flag: '%{geo_country_flag}',
@@ -181,6 +197,8 @@ const { log } = console;
 
     const defaultTemplateData = {
       family,
+      svg502504,
+      supportScript: supportScript.code,
       organization: Organization.en,
       style,
       firefoxSvg,
@@ -189,7 +207,6 @@ const { log } = console;
       title: `${errorCodes[code].message}`,
       errorDetail: errorCodes[code],
       code,
-      logo: logo.trim(),
     };
 
     let htmlContent = compliedPug(
