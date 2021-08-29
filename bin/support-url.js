@@ -8,12 +8,12 @@
   var emailSubject = encodeURIComponent('report webserver %{host} [#{code}]');
   var emailBody = encodeURIComponent(
     [
-      'id      : %{request_id}',
-      'host    : %{host}',
-      'url     : %{request_uri}',
-      'method  : %{request_method}',
-      'ip      : %{remote_addr}',
-      'waf     : %{waf_mode}',
+      'id: %{request_id}',
+      'host: %{host}',
+      'url: %{request_uri}',
+      'method: %{request_method}',
+      'ip: %{remote_addr}',
+      'waf: %{waf_mode}',
     ].join('\n'),
   );
   var urlParams = {
