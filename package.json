@@ -21,7 +21,7 @@
     "cssnano": "^5",
     "cssnano-preset-lite": "^2",
     "eslint": "^7",
-    "eslint-config-airbnb-base": "^14",
+    "eslint-config-airbnb-base": "^15",
     "eslint-plugin-import": "^2",
     "eslint-plugin-sonarjs": "^0",
     "lodash": "^4",
