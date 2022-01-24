@@ -9,9 +9,6 @@
     <a href="https://github.com/aasaam/error-pages/actions/workflows/test.yml">
       <img alt="test" src="https://github.com/aasaam/error-pages/actions/workflows/test.yml/badge.svg">
     </a>
-    <a href="https://david-dm.org/aasaam/error-pages?type=dev">
-      <img alt="David" src="https://img.shields.io/david/dev/aasaam/error-pages">
-    </a>
     <a href="https://github.com/aasaam/error-pages/blob/master/LICENSE">
       <img alt="License" src="https://img.shields.io/github/license/aasaam/error-pages">
     </a>

@@ -207,6 +207,7 @@ const { log } = console;
       title: `${errorCodes[code].message}`,
       errorDetail: errorCodes[code],
       code,
+      status: code,
     };
 
     let htmlContent = compliedPug(
@@ -217,7 +218,7 @@ const { log } = console;
 
     const purger = cssPure.purge({
       // @ts-ignore
-      whitelistPatterns: [new RegExp('data-content')],
+      whitelistPatterns: [/'data-content'/],
       content: [
         {
           raw: htmlContent,

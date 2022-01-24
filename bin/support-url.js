@@ -5,7 +5,7 @@
 /* eslint-disable func-names */
 /* eslint-disable wrap-iife */
 (function (document) {
-  var emailSubject = encodeURIComponent('report webserver %{host} [#{code}]');
+  var emailSubject = encodeURIComponent('report webserver %{host} [#{status}]');
   var emailBody = encodeURIComponent(
     [
       'id: %{request_id}',
