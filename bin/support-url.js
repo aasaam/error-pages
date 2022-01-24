@@ -5,10 +5,11 @@
 /* eslint-disable func-names */
 /* eslint-disable wrap-iife */
 (function (document) {
-  var emailSubject = encodeURIComponent('report webserver %{host} [#{status}]');
+  var emailSubject = encodeURIComponent('report webserver %{host} [%{status}]');
   var emailBody = encodeURIComponent(
     [
       'id: %{request_id}',
+      'status: %{status}',
       'host: %{host}',
       'url: %{request_uri}',
       'method: %{request_method}',
@@ -24,6 +25,7 @@
     method: '%{request_method}',
     ip: '%{remote_addr}',
     waf: '%{waf_mode}',
+    status: '%{status}',
   };
   var urlQueryString = Object.keys(urlParams)
     .map(function (key) {
