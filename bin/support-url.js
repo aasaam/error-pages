@@ -8,24 +8,26 @@
   var emailSubject = encodeURIComponent('report webserver %{host} [%{status}]');
   var emailBody = encodeURIComponent(
     [
-      'id: %{request_id}',
-      'status: %{status}',
       'host: %{host}',
-      'url: %{request_uri}',
-      'method: %{request_method}',
+      'id: %{request_id}',
       'ip: %{remote_addr}',
+      'method: %{request_method}',
+      'status: %{status}',
       'waf: %{waf_mode}',
+      'time_iso8601: %{time_iso8601}',
+      'url: %{request_uri}',
     ].join('\n'),
   );
   var urlParams = {
     mode: 'webserver-status',
-    id: '%{request_id}',
     host: '%{host}',
-    url: '%{request_uri}',
-    method: '%{request_method}',
+    id: '%{request_id}',
     ip: '%{remote_addr}',
-    waf: '%{waf_mode}',
+    method: '%{request_method}',
     status: '%{status}',
+    waf: '%{waf_mode}',
+    time_iso8601: '%{time_iso8601}',
+    url: '%{request_uri}',
   };
   var urlQueryString = Object.keys(urlParams)
     .map(function (key) {
@@ -37,7 +39,7 @@
       .querySelector('#support-mail')
       .setAttribute(
         'href',
-        'mailto:#{debug.support_email}?subject=' +
+        'mailto:%{support_email}?subject=' +
           emailSubject +
           '&body=' +
           emailBody,
@@ -46,7 +48,7 @@
       .querySelector('#support-url')
       .setAttribute(
         'href',
-        '#{debug.debug.support_url}?' + urlQueryString,
+        '%{support_url}?' + urlQueryString,
       );
   });
   // eslint-disable-next-line no-undef
