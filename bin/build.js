@@ -161,7 +161,6 @@ const { log } = console;
       request_length: '%{request_length}',
 
       client_uid: '%{client_uid}',
-      client_uid_cookie: '%{client_uid_cookie}',
       user_id: '%{user_id}',
 
       http_user_agent: '%{http_user_agent}',
