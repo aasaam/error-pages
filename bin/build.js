@@ -161,7 +161,7 @@ const { log } = console;
       request_length: '%{request_length}',
 
       client_uid: '%{client_uid}',
-      user_id: '%{user_id}',
+      username: '%{username}',
 
       http_user_agent: '%{http_user_agent}',
 
