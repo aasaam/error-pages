@@ -30,7 +30,7 @@
     "nunjucks": "^3",
     "postcss": "^8",
     "pug": "^3",
-    "purgecss": "^4",
+    "purgecss": "^5",
     "strip-comments": "^2",
     "uglify-js": "^3"
   },
