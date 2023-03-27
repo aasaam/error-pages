@@ -18,7 +18,7 @@
     "@aasaam/brand-icons": "^0",
     "@aasaam/http-status-extra": "^0",
     "@aasaam/information": "^0",
-    "cssnano": "^5",
+    "cssnano": "^6",
     "cssnano-preset-lite": "^2",
     "eslint": "^8",
     "eslint-config-airbnb-base": "^15",
