@@ -26,7 +26,7 @@
     "eslint-plugin-sonarjs": "^0",
     "lodash": "^4",
     "minireset.css": "^0",
-    "node-sass": "^7",
+    "node-sass": "^9",
     "nunjucks": "^3",
     "postcss": "^8",
     "pug": "^3",
